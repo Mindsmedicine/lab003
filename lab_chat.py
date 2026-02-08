@@ -57,6 +57,7 @@ def chat_task(ctx, pipe, n, group):
             # print(f"NODE_MSG CONT: {cmds}")
     n.stop()
 
+
 def get_channel(node, group):
     ctx = zmq.Context()
     return zhelper.zthread_fork(ctx, chat_task, n=node, group=group)

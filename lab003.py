@@ -27,7 +27,7 @@ def initialize_chat():
     node = lc.get_peer_node(user)
     lc.join_group(node, group)  #found an error here, I originally had it as "lc.join.group and it was returning an error
                                 # saying lab_chat has no attribute to join.  Changed to "lc.join_group"
-    time.sleep(2)
+    time.sleep(5)
     channel = lc.get_channel(node, group)
     return channel
 
@@ -41,16 +41,18 @@ def start_chat():
             # checks to see if user ended the chat
             if msg.lower() in ['exit']:
                 #Uses the existing channel
-                channel.send("$$$STOP".encode('utf_8'))
+                channel.send("$$STOP".encode('utf_8')) #was using $$$STOP instead of $$STOP
                 print("FINISHED")
                 break
             channel.send(msg.encode('utf_8'))
         except (KeyboardInterrupt, SystemExit):
             break
 
-    print("FINISHED")
+    #print("FINISHED") commented out because it was creating a redundent "FINISHED" upon typing exit
+
 
 start_chat()
+
 #print(type(initialize_chat()))
 
 
